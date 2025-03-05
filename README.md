@@ -53,6 +53,23 @@ A modern headless WordPress website built with Astro.js and React, interfacing w
    npm run build
    ```
 
+5. Start the production server:
+   ```
+   npm start
+   ```
+
+## Deployment
+
+This project is configured for deployment to hosting platforms that support Node.js:
+
+1. Make sure your hosting platform has Node.js 18+ installed
+2. Set up your deployment to:
+   - Run `npm install` to install dependencies
+   - Run `npm run build` to build the project
+   - Run `npm start` to start the server
+
+The application uses the Node.js adapter in standalone mode, which means it doesn't require any external server like Express or Fastify.
+
 ## WordPress Setup
 
 This project requires a WordPress installation with the following plugins:
