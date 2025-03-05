@@ -1,0 +1,24 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TagPosts from '../../components/TagPosts';
+
+// Enable server-side rendering for this route
+export const prerender = false;
+
+// Get the slug from the URL
+const { slug } = Astro.params;
+---
+
+<Layout title={`Tag: ${slug} | Blog`}>
+  <div class="container">
+    <TagPosts tagSlug={slug} client:load />
+  </div>
+</Layout>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+</style>

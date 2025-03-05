@@ -1,0 +1,198 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { fetchFromWordPress, queries } from '../../lib/wp-client';
+
+// Enable server-side rendering for this route
+export const prerender = false;
+
+// Get the slug from the URL
+const { slug } = Astro.params;
+
+// Fetch the page content
+const data = await fetchFromWordPress(queries.GET_PAGE_BY_SLUG, { slug });
+const page = data?.page;
+---
+
+<Layout title={page?.title || 'Page Not Found'}>
+  {page ? (
+    <div class="page-container">
+      <div class="page-header">
+        <div class="container">
+          <h1>{page.title}</h1>
+        </div>
+      </div>
+      
+      <div class="page-content">
+        <div class="container">
+          <div class="content-wrapper">
+            {page.featuredImage && (
+              <div class="featured-image">
+                <img 
+                  src={page.featuredImage.node.sourceUrl} 
+                  alt={page.featuredImage.node.altText || page.title} 
+                />
+              </div>
+            )}
+            
+            <div class="content" set:html={page.content} />
+          </div>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div class="page-not-found">
+      <div class="container">
+        <h1>Page Not Found</h1>
+        <p>The page you are looking for does not exist or has been moved.</p>
+        <a href="/" class="btn">Return to Home</a>
+      </div>
+    </div>
+  )}
+</Layout>
+
+<style>
+  .page-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+  }
+  
+  .page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .page-content {
+    padding: 4rem 0;
+  }
+  
+  .content-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .featured-image {
+    margin: 0 0 2rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .featured-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .content {
+    color: #333;
+    line-height: 1.8;
+  }
+  
+  .content h2 {
+    font-size: 1.75rem;
+    margin: 2rem 0 1rem;
+    color: var(--dark-color);
+  }
+  
+  .content h3 {
+    font-size: 1.5rem;
+    margin: 1.75rem 0 1rem;
+    color: var(--dark-color);
+  }
+  
+  .content p {
+    margin-bottom: 1.5rem;
+  }
+  
+  .content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 1.5rem 0;
+  }
+  
+  .content ul, 
+  .content ol {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+  }
+  
+  .content li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .content blockquote {
+    border-left: 4px solid var(--primary-color);
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #555;
+  }
+  
+  .content a {
+    color: var(--primary-color);
+    text-decoration: underline;
+  }
+  
+  .content a:hover {
+    text-decoration: none;
+  }
+  
+  .page-not-found {
+    padding: 6rem 0;
+    text-align: center;
+  }
+  
+  .page-not-found h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+  }
+  
+  .page-not-found p {
+    font-size: 1.25rem;
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #3a5bd9;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  @media (max-width: 768px) {
+    .page-header {
+      padding: 3rem 0;
+    }
+    
+    .page-header h1 {
+      font-size: 2.5rem;
+    }
+    
+    .page-content {
+      padding: 2rem 0;
+    }
+    
+    .content-wrapper {
+      padding: 1.5rem;
+    }
+  }
+</style>

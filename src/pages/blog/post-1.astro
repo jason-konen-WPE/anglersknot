@@ -1,0 +1,244 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Getting Started with Headless WordPress | Blog">
+  <div class="post-container">
+    <article class="post-full">
+      <header class="post-header">
+        <div class="post-categories">
+          <span class="category">Technology</span>
+        </div>
+        <h1 class="post-title">Getting Started with Headless WordPress</h1>
+        <div class="post-meta">
+          <span class="post-date">March 5, 2025</span>
+        </div>
+      </header>
+      
+      <div class="post-featured-image">
+        <img src="https://via.placeholder.com/1200x600" alt="Headless WordPress" />
+      </div>
+      
+      <div class="post-content">
+        <p>
+          WordPress is one of the most popular content management systems in the world, powering over 40% of all websites on the internet. However, as web development has evolved, so has the way we use WordPress. Enter headless WordPress - a modern approach that separates the content management backend from the frontend presentation layer.
+        </p>
+        
+        <h2>What is Headless WordPress?</h2>
+        
+        <p>
+          In a traditional WordPress setup, the backend (where you create and manage content) and the frontend (what visitors see) are tightly coupled. WordPress handles both content management and content delivery through its theme system.
+        </p>
+        
+        <p>
+          A headless WordPress setup decouples these two aspects. You still use WordPress as your content management system, but instead of using WordPress themes for the frontend, you use a separate frontend technology (like Astro and React in our case) to fetch content from WordPress via an API and render it.
+        </p>
+        
+        <h2>Why Use Headless WordPress?</h2>
+        
+        <p>Here are some benefits of using a headless WordPress approach:</p>
+        
+        <ul>
+          <li><strong>Performance</strong>: Frontend frameworks like Astro can generate static HTML, resulting in faster load times.</li>
+          <li><strong>Flexibility</strong>: You can use modern frontend technologies while still leveraging WordPress's powerful content management capabilities.</li>
+          <li><strong>Security</strong>: The WordPress admin area can be completely separate from the public-facing site, reducing the attack surface.</li>
+          <li><strong>Developer Experience</strong>: Frontend developers can work with their preferred tools and frameworks.</li>
+          <li><strong>Scalability</strong>: The frontend can be hosted on a CDN for global distribution and better performance.</li>
+        </ul>
+        
+        <h2>Setting Up Headless WordPress with WP GraphQL</h2>
+        
+        <p>
+          To use WordPress as a headless CMS, you'll need to expose your content via an API. While WordPress comes with a REST API built-in, GraphQL offers a more efficient way to query exactly the data you need.
+        </p>
+        
+        <p>
+          WP GraphQL is a free, open-source WordPress plugin that provides an extendable GraphQL schema and API for any WordPress site. Here's how to set it up:
+        </p>
+        
+        <ol>
+          <li>Install and activate the <a href="https://wordpress.org/plugins/wp-graphql/" target="_blank">WP GraphQL plugin</a> from the WordPress plugin repository.</li>
+          <li>Once activated, you'll have a GraphQL API endpoint at <code>https://your-wordpress-site.com/graphql</code>.</li>
+          <li>You can use tools like <a href="https://www.apollographql.com/docs/react/" target="_blank">Apollo Client</a> to fetch data from this endpoint in your frontend application.</li>
+        </ol>
+        
+        <h2>Building the Frontend with Astro and React</h2>
+        
+        <p>
+          Astro is a modern static site generator that allows you to use components from various frontend frameworks, including React. It's perfect for building fast, content-focused websites like blogs.
+        </p>
+        
+        <p>
+          Here's a basic outline of how to set up an Astro project with React components that fetches data from WordPress via GraphQL:
+        </p>
+        
+        <ol>
+          <li>Create a new Astro project: <code>npm create astro@latest</code></li>
+          <li>Add React integration: <code>npm install @astrojs/react react react-dom</code></li>
+          <li>Configure Astro to use React in <code>astro.config.mjs</code></li>
+          <li>Install Apollo Client: <code>npm install @apollo/client graphql</code></li>
+          <li>Set up Apollo Client to connect to your WordPress GraphQL endpoint</li>
+          <li>Create React components to fetch and display WordPress content</li>
+          <li>Use these components in your Astro pages</li>
+        </ol>
+        
+        <h2>Conclusion</h2>
+        
+        <p>
+          Headless WordPress with Astro and React offers a powerful combination of content management and modern frontend development. You get the best of both worlds: WordPress's user-friendly admin interface and robust content management features, along with the performance and developer experience benefits of modern frontend technologies.
+        </p>
+        
+        <p>
+          In future posts, we'll dive deeper into specific aspects of building a headless WordPress site, including setting up WP GraphQL, creating custom post types, and optimizing performance.
+        </p>
+      </div>
+    </article>
+  </div>
+</Layout>
+
+<style>
+  .post-container {
+    padding: 4rem 0;
+  }
+  
+  .post-full {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .post-header {
+    padding: 2rem 2rem 1.5rem;
+  }
+  
+  .post-categories {
+    margin-bottom: 1rem;
+  }
+  
+  .category {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .post-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+  }
+  
+  .post-meta {
+    font-size: 0.875rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+  }
+  
+  .post-featured-image {
+    width: 100%;
+    max-height: 500px;
+    overflow: hidden;
+  }
+  
+  .post-featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .post-content {
+    padding: 2rem;
+    color: #333;
+    line-height: 1.8;
+  }
+  
+  .post-content h2 {
+    font-size: 1.75rem;
+    margin: 2rem 0 1rem;
+    color: var(--dark-color);
+  }
+  
+  .post-content h3 {
+    font-size: 1.5rem;
+    margin: 1.75rem 0 1rem;
+    color: var(--dark-color);
+  }
+  
+  .post-content p {
+    margin-bottom: 1.5rem;
+  }
+  
+  .post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 1.5rem 0;
+  }
+  
+  .post-content ul, 
+  .post-content ol {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+  }
+  
+  .post-content li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .post-content blockquote {
+    border-left: 4px solid var(--primary-color);
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #555;
+  }
+  
+  .post-content a {
+    color: var(--primary-color);
+    text-decoration: underline;
+  }
+  
+  .post-content a:hover {
+    text-decoration: none;
+  }
+  
+  .post-content pre {
+    background-color: #f5f5f5;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+  
+  .post-content code {
+    background-color: #f5f5f5;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: monospace;
+  }
+  
+  @media (max-width: 768px) {
+    .post-container {
+      padding: 2rem 0;
+    }
+    
+    .post-header {
+      padding: 1.5rem 1.5rem 1rem;
+    }
+    
+    .post-title {
+      font-size: 2rem;
+    }
+    
+    .post-content {
+      padding: 1.5rem;
+    }
+  }
+</style>

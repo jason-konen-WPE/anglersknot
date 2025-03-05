@@ -1,0 +1,112 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "A headless WordPress site built with Astro and React" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<title>{title}</title>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--primary-color: #4a6cf7;
+		--secondary-color: #6c757d;
+		--dark-color: #1a1a1a;
+		--light-color: #f8f9fa;
+		--success-color: #28a745;
+		--danger-color: #dc3545;
+	}
+	
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+	
+	html {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		scroll-behavior: smooth;
+	}
+	
+	body {
+		line-height: 1.6;
+		color: #333;
+		background-color: #f5f5f5;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+	
+	main {
+		flex: 1;
+		padding: 2rem 0;
+	}
+	
+	h1, h2, h3, h4, h5, h6 {
+		font-weight: 700;
+		line-height: 1.2;
+		margin-bottom: 1rem;
+	}
+	
+	p {
+		margin-bottom: 1rem;
+	}
+	
+	a {
+		color: var(--primary-color);
+		text-decoration: none;
+	}
+	
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+	
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1rem;
+	}
+	
+	.btn {
+		display: inline-block;
+		padding: 0.5rem 1rem;
+		background-color: var(--primary-color);
+		color: white;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		font-weight: 500;
+		transition: background-color 0.3s ease;
+	}
+	
+	.btn:hover {
+		background-color: #3a5bd9;
+	}
+</style>

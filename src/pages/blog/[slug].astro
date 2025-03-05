@@ -1,0 +1,38 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SinglePost from '../../components/SinglePost';
+
+export function getStaticPaths() {
+  // In a real implementation, you would fetch all post slugs from WordPress
+  // For now, we'll return static paths for our sample posts
+  return [
+    { params: { slug: 'post-1' } },
+    { params: { slug: 'post-2' } },
+    { params: { slug: 'post-3' } },
+    { params: { slug: 'post-4' } },
+    { params: { slug: 'post-5' } },
+    { params: { slug: 'post-6' } },
+    { params: { slug: 'hello-world' } }
+  ];
+}
+
+const { slug } = Astro.params;
+---
+
+<Layout title="Blog Post | Headless WordPress with Astro and React">
+  <div class="post-container">
+    <SinglePost slug={slug} client:load />
+  </div>
+</Layout>
+
+<style>
+  .post-container {
+    padding: 4rem 0;
+  }
+  
+  @media (max-width: 768px) {
+    .post-container {
+      padding: 2rem 0;
+    }
+  }
+</style>

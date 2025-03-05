@@ -1,0 +1,60 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AboutSection from '../components/AboutSection';
+---
+
+<Layout title="About | Headless WordPress with Astro and React">
+  <div class="about-header">
+    <div class="container">
+      <h1>About</h1>
+      <p>Learn more about me</p>
+    </div>
+  </div>
+
+  <div class="about-container">
+    <div class="container">
+      <AboutSection client:load />
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .about-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+  }
+  
+  .about-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .about-header p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+  }
+  
+  .about-container {
+    padding: 4rem 0;
+  }
+  
+  @media (max-width: 768px) {
+    .about-header {
+      padding: 3rem 0;
+    }
+    
+    .about-header h1 {
+      font-size: 2.5rem;
+    }
+    
+    .about-header p {
+      font-size: 1.1rem;
+    }
+    
+    .about-container {
+      padding: 2rem 0;
+    }
+  }
+</style>

@@ -1,0 +1,23 @@
+.loading, 
+.error, 
+.not-found {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.loading {
+  color: var(--secondary-color);
+}
+
+.error {
+  color: var(--danger-color);
+}
+
+.not-found {
+  color: var(--secondary-color);
+}
