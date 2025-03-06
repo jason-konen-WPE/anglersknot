@@ -1,5 +1,5 @@
 // WordPress GraphQL endpoint
-const WORDPRESS_API_URL = 'https://https://anglersknot.wpenginepowered.com/graphql';
+const WORDPRESS_API_URL = 'https://anglersknot.wpenginepowered.com/graphql';
 
 /**
  * Fetch data from WordPress GraphQL API
