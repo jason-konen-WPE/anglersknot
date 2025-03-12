@@ -1,5 +1,5 @@
-// WordPress GraphQL endpoint
-const WORDPRESS_API_URL = 'https://anglersknot.wpenginepowered.com/graphql';
+// WordPress GraphQL endpoint from environment variable
+const WORDPRESS_API_URL = import.meta.env.PUBLIC_WORDPRESS_API_URL;
 
 /**
  * Fetch data from WordPress GraphQL API

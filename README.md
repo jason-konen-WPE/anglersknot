@@ -78,4 +78,12 @@ This project requires a WordPress installation with the following plugins:
 
 ## Configuration
 
-The WordPress GraphQL endpoint is configured in `src/lib/wp-client.js`.
+The WordPress GraphQL endpoint is configured using environment variables:
+
+1. Create a `.env` file in the root directory (use `.env.example` as a template)
+2. Set the `PUBLIC_WORDPRESS_API_URL` variable to your WordPress GraphQL endpoint:
+   ```
+   PUBLIC_WORDPRESS_API_URL=https://your-wordpress-site.com/graphql
+   ```
+
+The `.env` file is not committed to the repository for security reasons. Make sure to create this file on your development and production environments.
